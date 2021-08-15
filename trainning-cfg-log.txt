@@ -1,0 +1,1 @@
+filename:train_relation_attention.py, structure:Net1, chage_info:Add Relation attention module to Net,hyperprameters:(5, 32, 200, 224, './EUS_bulk'),log_path=./logs/exp2, pth_path=./runs/exp2
