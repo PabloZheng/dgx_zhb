@@ -33,25 +33,23 @@ def r_walk(filelist, **kwargs):
             print("+1 ", marker1_path)
 
 
-if __name__ == '__main__':
-    # img = cv2.imread('I://dataset//EUS_bulk//train//P//EUS1_p0_img_1.jpg', 0)
-    first_path = 'I:/dataset/EUS_bulk'
-    _first_path = os.listdir('I:/dataset/EUS_bulk')
-    for i in range(len(_first_path)):
-        second_path = first_path + f'/{_first_path[i]}'
-        _second_path = os.listdir(second_path)
-        for j in range(len(_second_path)):
-            third_path = second_path + f'/{_second_path[j]}'
-            # dir_name = 'I://dataset//EUS_bulk//train//P//'
-            dir_name = third_path
-            # file_list = image_stream(dir_name, center_crop_canny, **kwargs)
-            file_list = os.listdir(dir_name)
-            kwargs = {'save_path': '../new_save', 'single_image': False, 'dir_path': dir_name}
-            # transducer_eliminate(file_list, **kwargs)
-            kwargs['save_path'] = '../new_save/layer_segment'
-            r_walk(file_list, **kwargs)
+def centercrop(filelist, **kwargs):
+    for i, name in enumerate(filelist):
+        read_path = kwargs['dir_path'] + f'/{name}'
+        save_path = kwargs['save_path'] + f'/{name}'
+        img = cv2.imread(read_path, 0)
+        (h, w) = img.shape
+        img[int(3/8*h): int(5/8*h), int(3/8*w): int(5/8*w)] = 0
+        cv2.imwrite(save_path, img)
 
-    # file_list = image_stream(dir_name, create_marker, **kwargs)
+
+if __name__ == '__main__':
+    img = cv2.imread('I://dataset//EUS_bulk//train//P//EUS1_p0_img_1.jpg', 0)
+    input_path = '../new_save/layer_segment/marker'
+    file_list = os.listdir(input_path)
+    kwargs = {'save_path': '../new_save/layer_segment/cropped', 'single_image': False, 'dir_path': input_path}
+    centercrop(file_list, **kwargs)
+
 
 
 
