@@ -4,6 +4,7 @@ import heapq
 import os
 import shutil
 
+
 def find_contour(img):
     # gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     ret, binary = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY_INV)
