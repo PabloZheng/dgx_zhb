@@ -1,2 +1,2 @@
 # dgx_zhb
-personal experiment 
+personal experiment for git management
